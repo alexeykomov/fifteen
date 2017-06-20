@@ -11,6 +11,9 @@
 
 
 (def state (r/atom {
-                     :order (make-pieces 0 [])}))
+                     :order (make-pieces 0 [])
+                     :delta-x 0
+                     :delta-y 0
+                     }))
 
 

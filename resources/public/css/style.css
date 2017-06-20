@@ -43,10 +43,9 @@ main {
 }
 
 .piece > span {
-
+    margin: auto;
     font-family: Arial, sans-serif;
-    font-size: 13px;
-    height: 13px;
+    font-size: 2rem;
 }
 
 .piece.movable {
