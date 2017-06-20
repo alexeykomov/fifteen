@@ -14,6 +14,9 @@
                      :order (make-pieces 0 [])
                      :delta-x 0
                      :delta-y 0
+                     :dragging-id ""
+                     :client-x 0
+                     :client-y 0
                      }))
 
 

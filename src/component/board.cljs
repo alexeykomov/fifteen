@@ -14,5 +14,7 @@
     (board-children)
     ])
 
-(add-watch state/state :re-render (fn [key state old-val new-val]
-                              (r/render board (goog.dom/getElement "root"))))
+(add-watch state/state :re-render
+  (fn [key state old-val new-val]
+    (println @state/state)
+    (r/render board (goog.dom/getElement "root"))))
