@@ -7,6 +7,12 @@
 (defn hollow [piece-id]
   [:li {:key (str piece-id) :class "hollow"}])
 
+(defn delta-x []
+  (:delta-x @state/state))
+
+(defn delta-y []
+  (:delta-y @state/state))
+
 (defn onmousedown [event]
   (js/console.log "onmousedown")
   (let [target (.-currentTarget event)
@@ -21,34 +27,20 @@
         ]
     (reset! state/state (merge @state/state {:dragging-id dragging-id
                                              :client-x client-x
-                                             :client-y client-y}))
+                                             :client-y client-y
+                                             :piece-rect {
+                                                           :width (.-width rect)
+                                                           :height (.-height rect)
+                                                           }
+                                             }))
     (println offset-x)
     (println offset-y)
-  ))
-
-(defn onmousemove [event]
-  (let [new-client-x (.-clientX event)
-        new-client-y (.-clientY event)
-        client-x (:offset-x @state/state)
-        client-y (:offset-y @state/state)]
-    (reset! state/state (merge @state/state {:delta-x (- new-client-x client-x)
-                                             :delta-y (- new-client-y client-y)
-                                              }))
-    (js/console.log "onmousemove")
-  ))
-
-(defn onmouseup []
-  (js/console.log "onmouseup"))
-
-(defn delta-x []
-  (:delta-x @state/state))
-
-(defn delta-y []
-  (:delta-y @state/state))
+    ))
 
 (defn piece [piece-id]
   (if (= piece-id 0)
       (hollow piece-id)
+      (do
       [:li {:id piece-id
             :key         (str piece-id)
             :style        (if (= piece-id (:dragging-id @state/state))
@@ -58,7 +50,6 @@
                               {})
             :class       "piece"
             :onMouseDown onmousedown
-            :onMouseMove onmousemove
-            :onMouseUp   onmouseup}
-       [:span piece-id]]))
+            }
+       [:span piece-id]])))
 

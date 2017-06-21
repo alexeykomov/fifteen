@@ -9,12 +9,6 @@
   (map piece/piece (@state/state :order)))
 
 (defn board []
-
   [:ul {:class "board"}
-    (board-children)
-    ])
+   (board-children)])
 
-(add-watch state/state :re-render
-  (fn [key state old-val new-val]
-    (println @state/state)
-    (r/render board (goog.dom/getElement "root"))))
