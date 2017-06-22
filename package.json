@@ -1,0 +1,26 @@
+{
+  "name": "fifteen",
+  "version": "1.0.0",
+  "description": "fifteen game",
+  "main": "./public/js/compiled/fifteen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "postcss ./resources/public/css/style.css --use autoprefixer -d build/",
+    "build": "lein do clean, cljsbuild once min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexeykomov/fifteen.git"
+  },
+  "keywords": [
+    "fifteen",
+    "game",
+    "puzzle"
+  ],
+  "author": "Alex K",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexeykomov/fifteen/issues"
+  },
+  "homepage": "https://github.com/alexeykomov/fifteen#readme"
+}

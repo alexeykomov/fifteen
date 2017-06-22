@@ -5,7 +5,7 @@
 
 
 (defn hollow [piece-id]
-  [:li {:key (str piece-id) :class "hollow"}])
+  [:li {:key (str piece-id) :class "piece hollow"}])
 
 (defn delta-x []
   (:delta-x @state/state))
@@ -25,20 +25,24 @@
         offset-x (- client-x element-x)
         offset-y (- client-y element-y)
         ]
-    (reset! state/state (merge @state/state {:dragging-id dragging-id
-                                             :client-x client-x
-                                             :client-y client-y
-                                             :piece-rect {
-                                                           :width (.-width rect)
-                                                           :height (.-height rect)
-                                                           }
-                                             }))
-    (println offset-x)
-    (println offset-y)
+    (println "dragging" dragging-id)
+    (if (> (int dragging-id) 0)
+      (reset! state/state (merge @state/state {:dragging-id dragging-id
+                                               :client-x client-x
+                                               :client-y client-y
+                                               :delta-x 0
+                                               :delta-y 0
+                                               :piece-rect {
+                                                             :width (.-width rect)
+                                                             :height (.-height rect)
+                                                             }
+                                               }))
+    )
+    (println "where-hollow?" (state/where-hollow?))
     ))
 
 (defn piece [piece-id]
-  (if (= piece-id 0)
+  (if (= piece-id (str 0))
       (hollow piece-id)
       (do
       [:li {:id piece-id
@@ -51,5 +55,6 @@
             :class       "piece"
             :onMouseDown onmousedown
             }
-       [:span piece-id]])))
+       [:span piece-id]])
+  ))
 

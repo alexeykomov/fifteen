@@ -1,10 +1,10 @@
 # fifteen
 
-FIXME: Write a one-line description of your library/project.
+Fifteen game.
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Fifteen game written in [ClojureScript](https://clojurescript.org/) and [Reagent](https://github.com/reagent-project/reagent). Rules can be overviewed at the Wikipedia [https://en.wikipedia.org/wiki/15_puzzle](https://en.wikipedia.org/wiki/15_puzzle).
 
 ## Setup
 
@@ -34,6 +34,4 @@ get live reloading, nor a REPL.
 
 ## License
 
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
+Copyright Aλex K © 2017 MIT

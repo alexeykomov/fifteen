@@ -11,7 +11,7 @@
   )
 
 (def state (r/atom {
-                     :order (make-pieces 0 [])
+                     :order (shuffle (make-pieces 0 []))
                      :delta-x 0
                      :delta-y 0
                      :dragging-id ""
@@ -22,6 +22,12 @@
                                    :width 0
                                    }
                      }))
+
+(defn delta-x []
+  (:delta-x @state))
+
+(defn delta-y []
+  (:delta-y @state))
 
 (defn dragging-id []
   (:dragging-id @state))
@@ -55,7 +61,6 @@
         draggable-col (col draggable-index)
         hollow-row (row hollow-index)
         hollow-col (col hollow-index)]
-
     (cond
       (and (= draggable-col hollow-col) (=(- draggable-row hollow-row) 1)) :up
       (and (= draggable-col hollow-col) (=(- draggable-row hollow-row) -1)) :down
@@ -66,14 +71,14 @@
   ))
 
 (defn get-bounds-y []
-  (cond (= where-hollow? :up)   {:min (- (rect-height)) :max 0}
-        (= where-hollow? :down) {:min 0 :max (rect-height)}
+  (cond (= (where-hollow?) :up)   {:min (- (rect-height)) :max 0}
+        (= (where-hollow?) :down) {:min 0 :max (rect-height)}
         :else                   {:min 0 :max 0}
         ))
 
 (defn get-bounds-x []
-  (cond (= where-hollow? :left)  {:min (- (rect-width)) :max 0}
-        (= where-hollow? :right) {:min 0 :max (rect-width)}
+  (cond (= (where-hollow?) :left)  {:min (- (rect-width)) :max 0}
+        (= (where-hollow?) :right) {:min 0 :max (rect-width)}
         :else                    {:min 0 :max 0}))
 
 (defn bound-y! [y]
@@ -87,3 +92,22 @@
     (cond (< x (:min bounds-x)) (:min bounds-x)
           (> x (:max bounds-x)) (:max bounds-x)
           :else                 x)))
+
+(defn swap-places! []
+  (let [dragging-id (dragging-id)
+        new-order (map
+                         (fn [piece-id]
+                           (cond
+                             (= piece-id (str 0)) dragging-id
+                             (= piece-id (str dragging-id)) (str 0)
+                             :else piece-id
+                             ))
+                         (:order @state)
+                         )]
+
+    (reset! state (merge @state {
+                                  :order new-order
+                                  :dragging-id ""
+                                  }))
+    )
+  )

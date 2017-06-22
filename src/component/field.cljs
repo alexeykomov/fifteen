@@ -4,9 +4,6 @@
             [state.state :as state]
             [goog.dom]))
 
-(defn crop-delta-x [delta-x]
-  (cond )
-  )
 
 (defn onmousemove [event]
   (let [new-client-x (.-clientX event)
@@ -15,14 +12,22 @@
         client-y     (:client-y @state/state)
         delta-x      (state/bound-x! (- new-client-x client-x))
         delta-y      (state/bound-y! (- new-client-y client-y))]
-    (reset! state/state
-            (merge @state/state
-                   {:delta-x delta-x
-                    :delta-y delta-y}))))
+    (if (not= (state/dragging-id) "")
+        (reset! state/state
+                (merge @state/state
+                       {:delta-x delta-x
+                        :delta-y delta-y}))
+    )
+  ))
 
 (defn onmouseup []
   (js/console.log "onmouseup")
-  (reset! state/state (merge @state/state {:dragging-id ""}))
+  (if (not= (state/dragging-id) "")
+    (if (or (> (js/Math.abs (state/delta-x)) (/ (state/rect-width) 2))
+          (> (js/Math.abs (state/delta-y)) (/ (state/rect-height) 2)))
+      (state/swap-places!)
+      (reset! state/state (merge @state/state {:dragging-id ""}))
+    ))
   )
 
 (defn field []

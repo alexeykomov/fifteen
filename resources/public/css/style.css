@@ -20,7 +20,7 @@ html, body, main {
     max-width: 400px;
     max-height: 400px;
     padding: 0;
-    margin: 0;
+    margin: auto;
 
     flex-direction: row;
     flex-grow: 1;
@@ -36,12 +36,18 @@ html, body, main {
     display: flex;
     justify-content: center;
     align-content: center;
+    user-select: none;
+    -moz-user-select: none;
 
     width: calc(100% / 4);
     height: calc(100% / 4);
 
-
     background: sandybrown;
+    cursor: pointer;
+}
+
+.piece.hollow {
+    background: saddlebrown;
 }
 
 .piece > span {
@@ -51,5 +57,4 @@ html, body, main {
 }
 
 .piece.movable {
-    cursor: pointer;
 }
