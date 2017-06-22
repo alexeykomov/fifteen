@@ -2,16 +2,17 @@
   [:require [reagent.core :as r]])
 
 
-(defn make-pieces [counter result]
+(defn make-pieces [counter result max-counter]
     (def id counter)
 
-    (if (< counter 16)
-      (recur (inc counter) (conj result (str id)))
+    (if (< counter max-counter)
+      (recur (inc counter) (conj result (str id)) max-counter)
       result)
   )
 
 (def state (r/atom {
-                     :order (shuffle (make-pieces 0 []))
+                     :etalon-order (conj (make-pieces 1 [] 16) (str 0))
+                     :order (shuffle (conj (make-pieces 1 [] 16) (str 0)))
                      :delta-x 0
                      :delta-y 0
                      :dragging-id ""
@@ -110,4 +111,8 @@
                                   :dragging-id ""
                                   }))
     )
+  )
+
+(defn check-victory []
+  (= (:order @state) (:etalon-order @state))
   )

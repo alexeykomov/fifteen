@@ -25,7 +25,12 @@
   (if (not= (state/dragging-id) "")
     (if (or (> (js/Math.abs (state/delta-x)) (/ (state/rect-width) 2))
           (> (js/Math.abs (state/delta-y)) (/ (state/rect-height) 2)))
-      (state/swap-places!)
+      (do
+        (state/swap-places!)
+        (if (state/check-victory)
+            (js/alert "You achieved victory!!!")
+            )
+        )
       (reset! state/state (merge @state/state {:dragging-id ""}))
     ))
   )
