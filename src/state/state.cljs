@@ -113,6 +113,6 @@
     )
   )
 
-(defn check-victory []
+(defn check-victory! []
   (= (:order @state) (:etalon-order @state))
   )
