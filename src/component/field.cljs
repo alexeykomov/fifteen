@@ -27,7 +27,7 @@
           (> (js/Math.abs (state/delta-y)) (/ (state/rect-height) 2)))
       (do
         (state/swap-places!)
-        (if (state/check-victory)
+        (if (state/check-victory?)
             (js/alert "You achieved victory!!!")
             )
         )
