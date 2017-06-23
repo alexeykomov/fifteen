@@ -10,5 +10,5 @@
 
 (defn board []
   [:ul {:class "board"}
-   (board-children)])
+   (doall (board-children))])
 

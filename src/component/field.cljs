@@ -35,6 +35,10 @@
     ))
   )
 
+(defn ontouchmove [])
+
+(defn ontouchend [])
+
 (defn field []
   (r/create-class
     {
@@ -43,7 +47,9 @@
       :reagent-render (fn []
                        [:div {:class       "field"
                                :onMouseMove onmousemove
-                               :onMouseUp   onmouseup}
+                               :onTouchMove ontouchmove
+                               :onMouseUp   onmouseup
+                               :onTouchEnd   ontouchend}
                         (board/board)])
      }))
 

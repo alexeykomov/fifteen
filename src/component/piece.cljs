@@ -41,6 +41,11 @@
     (println "where-hollow?" (state/where-hollow?))
     ))
 
+(defn ontouchstart [event]
+  (println "ontuchstart" event)
+  (js/console.log "target touches" (aget (.-targetTouches event) 0) )
+  )
+
 (defn piece [piece-id]
   (if (= piece-id (str 0))
       (hollow piece-id)
@@ -54,6 +59,7 @@
                               {})
             :class       "piece"
             :onMouseDown onmousedown
+            :onTouchStart ontouchstart
             }
        [:span piece-id]])
   ))
