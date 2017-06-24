@@ -24,6 +24,7 @@ build
 client_secret_*.json
 # For additionally disabled files, look into css/.gitignore, js/.gitignore,
 # logs/.gitignore
+resources/public/js/compiled/fifteen.js
 
 figwheel_server.log
 pom.xml
