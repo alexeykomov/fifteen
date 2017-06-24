@@ -2,9 +2,9 @@
 
 Fifteen game.
 
-[Demo](https://github.io/alexeykomov/fifteen).
+[Demo](https://alexeykomov.github.io/fifteen).
 
-![Screenshot](https://github.io/alexeykomov/fifteen/resources/img/Screen-Shot-2017-06-24-at-14.43.17.png)
+![Screenshot](https://alexeykomov.github.io/fifteen/resources/img/Screen-Shot-2017-06-24-at-14.43.17)
 
 ## Overview
 
