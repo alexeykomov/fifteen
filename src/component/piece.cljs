@@ -41,6 +41,20 @@
     (println "where-hollow?" (state/where-hollow?))
     ))
 
+(defn ontouchstart [event]
+  (let [target (.-currentTarget event)
+        firstTouch (aget (.-targetTouches event) 0)
+        adaptedEvent #js {
+                           "currentTarget" target
+                           "clientX" (.-clientX firstTouch)
+                           "clientY" (.-clientY firstTouch)
+                           }
+        ]
+    (println "adaptedEvent" adaptedEvent)
+    (onmousedown adaptedEvent)
+    (. event preventDefault)
+    ))
+
 (defn piece [piece-id]
   (if (= piece-id (str 0))
       (hollow piece-id)
@@ -54,6 +68,7 @@
                               {})
             :class       "piece"
             :onMouseDown onmousedown
+            :onTouchStart ontouchstart
             }
        [:span piece-id]])
   ))

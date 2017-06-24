@@ -63,9 +63,9 @@
         hollow-row (row hollow-index)
         hollow-col (col hollow-index)]
     (cond
-      (and (= draggable-col hollow-col) (=(- draggable-row hollow-row) 1)) :up
+      (and (= draggable-col hollow-col) (=(- draggable-row hollow-row) 1))  :up
       (and (= draggable-col hollow-col) (=(- draggable-row hollow-row) -1)) :down
-      (and (= draggable-row hollow-row) (=(- draggable-col hollow-col) 1)) :left
+      (and (= draggable-row hollow-row) (=(- draggable-col hollow-col) 1))  :left
       (and (= draggable-row hollow-row) (=(- draggable-col hollow-col) -1)) :right
       :else :not-adjacent
     )
