@@ -5,8 +5,8 @@
   "main": "./public/js/compiled/fifteen.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css": "postcss ./resources/public/css/style.css --use autoprefixer -d build/",
-    "build": "lein do clean, cljsbuild once min"
+    "css": "postcss ./resources/public/css/style.css --use autoprefixer --use cssnano -o ./resources/public/css/style-prefixed.css",
+    "build": "npm run css && lein do clean, cljsbuild once min"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/alexeykomov/fifteen/issues"
   },
-  "homepage": "https://github.com/alexeykomov/fifteen#readme"
+  "homepage": "https://github.com/alexeykomov/fifteen#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "cssnano": "^3.10.0",
+    "postcss-cli": "^4.1.0"
+  }
 }

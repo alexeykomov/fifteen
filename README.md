@@ -2,6 +2,10 @@
 
 Fifteen game.
 
+[Demo](https://github.io/alexeykomov/fifteen).
+
+![Screenshot](https://github.io/alexeykomov/fifteen/resources/img/Screen-Shot-2017-06-24-at-14.43.17.png)
+
 ## Overview
 
 Fifteen game written in [ClojureScript](https://clojurescript.org/) and [Reagent](https://github.com/reagent-project/reagent). Rules can be overviewed at the Wikipedia [https://en.wikipedia.org/wiki/15_puzzle](https://en.wikipedia.org/wiki/15_puzzle).
