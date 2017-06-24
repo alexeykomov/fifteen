@@ -42,9 +42,18 @@
     ))
 
 (defn ontouchstart [event]
-  (println "ontuchstart" event)
-  (js/console.log "target touches" (aget (.-targetTouches event) 0) )
-  )
+  (let [target (.-currentTarget event)
+        firstTouch (aget (.-targetTouches event) 0)
+        adaptedEvent #js {
+                           "currentTarget" target
+                           "clientX" (.-clientX firstTouch)
+                           "clientY" (.-clientY firstTouch)
+                           }
+        ]
+    (println "adaptedEvent" adaptedEvent)
+    (onmousedown adaptedEvent)
+    (. event preventDefault)
+    ))
 
 (defn piece [piece-id]
   (if (= piece-id (str 0))

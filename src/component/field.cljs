@@ -35,15 +35,28 @@
     ))
   )
 
-(defn ontouchmove [])
+(defn ontouchmove [event]
+  (let [firstTouch (aget (.-changedTouches event) 0)
+        adaptedEvent #js {
+                           "clientX" (.-clientX firstTouch)
+                           "clientY" (.-clientY firstTouch)
+                           }
+        ]
+    (println "adaptedEvent" adaptedEvent)
+    (onmousemove adaptedEvent)
+    )
+  )
 
-(defn ontouchend [])
+(defn ontouchend [event]
+  (js/console.log "ontouchend")
+  (onmouseup)
+  )
 
 (defn field []
   (r/create-class
     {
       :component-did-mount (fn [] (println "component did mount"))
-      :component-will-unmount (fn [])
+      :component-will-unmount (fn [] (println "component will unmount"))
       :reagent-render (fn []
                        [:div {:class       "field"
                                :onMouseMove onmousemove
